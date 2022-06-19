@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace FaunaDB.Collections
 {
@@ -23,17 +24,49 @@ namespace FaunaDB.Collections
             };
         }
 
+        public static IReadOnlyDictionary<string, TValue> Of<TValue>(string k0, TValue v0)
+        {
+            if (k0 == null)
+            {
+                return new Dictionary<string, TValue>(0, StringComparer.Ordinal);
+            }
+
+            return new Dictionary<string, TValue>(1, StringComparer.Ordinal)
+            {
+                { k0, v0 },
+            };
+        }
+
         public static IReadOnlyDictionary<TKey, TValue> Of<TKey, TValue>(TKey k0, TValue v0, TKey k1, TValue v1)
         {
             var dict = new Dictionary<TKey, TValue>(2);
             if (k0 != null)
             {
-                dict[k0] = v0;
+                dict.Add(k0, v0);
             }
 
             if (k1 != null)
             {
-                dict[k1] = v1;
+                dict.Add(k1, v1);
+            }
+
+#if NETSTANDARD2_1
+            dict.TrimExcess();
+#endif
+            return dict;
+        }
+
+        public static IReadOnlyDictionary<string, TValue> Of<TValue>(string k0, TValue v0, string k1, TValue v1)
+        {
+            var dict = new Dictionary<string, TValue>(2, StringComparer.Ordinal);
+            if (k0 != null)
+            {
+                dict.Add(k0, v0);
+            }
+
+            if (k1 != null)
+            {
+                dict.Add(k1, v1);
             }
 
 #if NETSTANDARD2_1
@@ -47,17 +80,41 @@ namespace FaunaDB.Collections
             var dict = new Dictionary<TKey, TValue>(3);
             if (k0 != null)
             {
-                dict[k0] = v0;
+                dict.Add(k0, v0);
             }
 
             if (k1 != null)
             {
-                dict[k1] = v1;
+                dict.Add(k1, v1);
             }
 
             if (k2 != null)
             {
-                dict[k2] = v2;
+                dict.Add(k2, v2);
+            }
+
+#if NETSTANDARD2_1
+            dict.TrimExcess();
+#endif
+            return dict;
+        }
+
+        public static IReadOnlyDictionary<string, TValue> Of<TValue>(string k0, TValue v0, string k1, TValue v1, string k2, TValue v2)
+        {
+            var dict = new Dictionary<string, TValue>(3, StringComparer.Ordinal);
+            if (k0 != null)
+            {
+                dict.Add(k0, v0);
+            }
+
+            if (k1 != null)
+            {
+                dict.Add(k1, v1);
+            }
+
+            if (k2 != null)
+            {
+                dict.Add(k2, v2);
             }
 
 #if NETSTANDARD2_1
@@ -71,22 +128,51 @@ namespace FaunaDB.Collections
             var dict = new Dictionary<TKey, TValue>(4);
             if (k0 != null)
             {
-                dict[k0] = v0;
+                dict.Add(k0, v0);
             }
 
             if (k1 != null)
             {
-                dict[k1] = v1;
+                dict.Add(k1, v1);
             }
 
             if (k2 != null)
             {
-                dict[k2] = v2;
+                dict.Add(k2, v2);
             }
 
             if (k3 != null)
             {
-                dict[k3] = v3;
+                dict.Add(k3, v3);
+            }
+
+#if NETSTANDARD2_1
+            dict.TrimExcess();
+#endif
+            return dict;
+        }
+
+        public static IReadOnlyDictionary<string, TValue> Of<TValue>(string k0, TValue v0, string k1, TValue v1, string k2, TValue v2, string k3, TValue v3)
+        {
+            var dict = new Dictionary<string, TValue>(4, StringComparer.Ordinal);
+            if (k0 != null)
+            {
+                dict.Add(k0, v0);
+            }
+
+            if (k1 != null)
+            {
+                dict.Add(k1, v1);
+            }
+
+            if (k2 != null)
+            {
+                dict.Add(k2, v2);
+            }
+
+            if (k3 != null)
+            {
+                dict.Add(k3, v3);
             }
 
 #if NETSTANDARD2_1
@@ -100,27 +186,60 @@ namespace FaunaDB.Collections
             var dict = new Dictionary<TKey, TValue>(5);
             if (k0 != null)
             {
-                dict[k0] = v0;
+                dict.Add(k0, v0);
             }
 
             if (k1 != null)
             {
-                dict[k1] = v1;
+                dict.Add(k1, v1);
             }
 
             if (k2 != null)
             {
-                dict[k2] = v2;
+                dict.Add(k2, v2);
             }
 
             if (k3 != null)
             {
-                dict[k3] = v3;
+                dict.Add(k3, v3);
             }
 
             if (k4 != null)
             {
-                dict[k4] = v4;
+                dict.Add(k4, v4);
+            }
+#if NETSTANDARD2_1
+            dict.TrimExcess();
+#endif
+            return dict;
+        }
+
+        public static IReadOnlyDictionary<string, TValue> Of<TValue>(string k0, TValue v0, string k1, TValue v1, string k2, TValue v2, string k3, TValue v3, string k4, TValue v4)
+        {
+            var dict = new Dictionary<string, TValue>(5, StringComparer.Ordinal);
+            if (k0 != null)
+            {
+                dict.Add(k0, v0);
+            }
+
+            if (k1 != null)
+            {
+                dict.Add(k1, v1);
+            }
+
+            if (k2 != null)
+            {
+                dict.Add(k2, v2);
+            }
+
+            if (k3 != null)
+            {
+                dict.Add(k3, v3);
+            }
+
+            if (k4 != null)
+            {
+                dict.Add(k4, v4);
             }
 #if NETSTANDARD2_1
             dict.TrimExcess();
@@ -133,32 +252,71 @@ namespace FaunaDB.Collections
             var dict = new Dictionary<TKey, TValue>(6);
             if (k0 != null)
             {
-                dict[k0] = v0;
+                dict.Add(k0, v0);
             }
 
             if (k1 != null)
             {
-                dict[k1] = v1;
+                dict.Add(k1, v1);
             }
 
             if (k2 != null)
             {
-                dict[k2] = v2;
+                dict.Add(k2, v2);
             }
 
             if (k3 != null)
             {
-                dict[k3] = v3;
+                dict.Add(k3, v3);
             }
 
             if (k4 != null)
             {
-                dict[k4] = v4;
+                dict.Add(k4, v4);
             }
 
             if (k5 != null)
             {
-                dict[k5] = v5;
+                dict.Add(k5, v5);
+            }
+
+#if NETSTANDARD2_1
+            dict.TrimExcess();
+#endif
+            return dict;
+        }
+
+        public static IReadOnlyDictionary<string, TValue> Of<TValue>(string k0, TValue v0, string k1, TValue v1, string k2, TValue v2, string k3, TValue v3, string k4, TValue v4, string k5, TValue v5)
+        {
+            var dict = new Dictionary<string, TValue>(6, StringComparer.Ordinal);
+            if (k0 != null)
+            {
+                dict.Add(k0, v0);
+            }
+
+            if (k1 != null)
+            {
+                dict.Add(k1, v1);
+            }
+
+            if (k2 != null)
+            {
+                dict.Add(k2, v2);
+            }
+
+            if (k3 != null)
+            {
+                dict.Add(k3, v3);
+            }
+
+            if (k4 != null)
+            {
+                dict.Add(k4, v4);
+            }
+
+            if (k5 != null)
+            {
+                dict.Add(k5, v5);
             }
 
 #if NETSTANDARD2_1
@@ -169,40 +327,84 @@ namespace FaunaDB.Collections
 
         public static IReadOnlyDictionary<TKey, TValue> Of<TKey, TValue>(TKey k0, TValue v0, TKey k1, TValue v1, TKey k2, TValue v2, TKey k3, TValue v3, TKey k4, TValue v4, TKey k5, TValue v5, TKey k6, TValue v6)
         {
-            var dict = new Dictionary<TKey, TValue>(7);
+            var dict = new Dictionary<TKey, TValue>(6);
             if (k0 != null)
             {
-                dict[k0] = v0;
+                dict.Add(k0, v0);
             }
 
             if (k1 != null)
             {
-                dict[k1] = v1;
+                dict.Add(k1, v1);
             }
 
             if (k2 != null)
             {
-                dict[k2] = v2;
+                dict.Add(k2, v2);
             }
 
             if (k3 != null)
             {
-                dict[k3] = v3;
+                dict.Add(k3, v3);
             }
 
             if (k4 != null)
             {
-                dict[k4] = v4;
+                dict.Add(k4, v4);
             }
 
             if (k5 != null)
             {
-                dict[k5] = v5;
+                dict.Add(k5, v5);
             }
 
             if (k6 != null)
             {
-                dict[k6] = v6;
+                dict.Add(k6, v6);
+            }
+
+#if NETSTANDARD2_1
+            dict.TrimExcess();
+#endif
+            return dict;
+        }
+
+        public static IReadOnlyDictionary<string, TValue> Of<TValue>(string k0, TValue v0, string k1, TValue v1, string k2, TValue v2, string k3, TValue v3, string k4, TValue v4, string k5, TValue v5, string k6, TValue v6)
+        {
+            var dict = new Dictionary<string, TValue>(6, StringComparer.Ordinal);
+            if (k0 != null)
+            {
+                dict.Add(k0, v0);
+            }
+
+            if (k1 != null)
+            {
+                dict.Add(k1, v1);
+            }
+
+            if (k2 != null)
+            {
+                dict.Add(k2, v2);
+            }
+
+            if (k3 != null)
+            {
+                dict.Add(k3, v3);
+            }
+
+            if (k4 != null)
+            {
+                dict.Add(k4, v4);
+            }
+
+            if (k5 != null)
+            {
+                dict.Add(k5, v5);
+            }
+
+            if (k6 != null)
+            {
+                dict.Add(k6, v6);
             }
 
 #if NETSTANDARD2_1

@@ -200,7 +200,7 @@ namespace FaunaDB.Types
             var obj = expr as ObjectV;
             if (obj != null)
             {
-                var values = new Dictionary<string, Expr>();
+                var values = new Dictionary<string, Expr>(StringComparer.Ordinal);
 
                 foreach (var kv in obj.Value)
                 {
@@ -213,7 +213,7 @@ namespace FaunaDB.Types
             var arr = expr as ArrayV;
             if (arr != null)
             {
-                var values = new List<Expr>();
+                var values = new List<Expr>(arr.Value.Count);
 
                 foreach (var value in arr.Value)
                 {
