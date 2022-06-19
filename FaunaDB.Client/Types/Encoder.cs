@@ -219,7 +219,7 @@ namespace FaunaDB.Types
 
         private Value WrapDictionary(IDictionary dic)
         {
-            var ret = new Dictionary<string, Value>();
+            var ret = new Dictionary<string, Value>(StringComparer.Ordinal);
 
             foreach (DictionaryEntry entry in dic)
             {

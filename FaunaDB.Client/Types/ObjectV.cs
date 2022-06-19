@@ -36,7 +36,7 @@ namespace FaunaDB.Types
         /// </param>
         internal ObjectV(Action<Action<string, Value>> builder)
         {
-            var values = new Dictionary<string, Value>();
+            var values = new Dictionary<string, Value>(StringComparer.Ordinal);
             builder((k, v) => values.Add(k, v));
             Value = values;
         }
@@ -44,7 +44,7 @@ namespace FaunaDB.Types
         #endregion
 
         /// <exception cref="KeyNotFoundException"/>
-        public Value this[string key] { get { return Value[key]; } }
+        public Value this[string key] => Value[key];
 
         /// <summary>
         /// If there is no value at the given key, just return <c>null</c>.

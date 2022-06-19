@@ -39,7 +39,7 @@ namespace FaunaDB.Query
             Expr events = null,
             Expr sources = null,
             Cursor cursor = null) =>
-            UnescapedObject.With(new Dictionary<string, Expr>
+            UnescapedObject.With(new Dictionary<string, Expr>(StringComparer.Ordinal)
             {
                 { "paginate", set ?? NullV.Instance },
                 { "ts", ts },
