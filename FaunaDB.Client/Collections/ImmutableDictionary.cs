@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace FaunaDB.Collections
 {
@@ -14,79 +12,203 @@ namespace FaunaDB.Collections
 
         public static IReadOnlyDictionary<TKey, TValue> Of<TKey, TValue>(TKey k0, TValue v0)
         {
-            return new Dictionary<TKey, TValue>
+            if (k0 == null)
+            {
+                return new Dictionary<TKey, TValue>(0);
+            }
+
+            return new Dictionary<TKey, TValue>(1)
             {
                 { k0, v0 },
-            }.FilterNulls();
+            };
         }
 
         public static IReadOnlyDictionary<TKey, TValue> Of<TKey, TValue>(TKey k0, TValue v0, TKey k1, TValue v1)
         {
-            return new Dictionary<TKey, TValue>
+            var dict = new Dictionary<TKey, TValue>(2);
+            if (k0 != null)
             {
-                { k0, v0 },
-                { k1, v1 },
-            }.FilterNulls();
+                dict[k0] = v0;
+            }
+
+            if (k1 != null)
+            {
+                dict[k1] = v1;
+            }
+
+#if NETSTANDARD2_1
+            dict.TrimExcess();
+#endif
+            return dict;
         }
 
         public static IReadOnlyDictionary<TKey, TValue> Of<TKey, TValue>(TKey k0, TValue v0, TKey k1, TValue v1, TKey k2, TValue v2)
         {
-            return new Dictionary<TKey, TValue>
+            var dict = new Dictionary<TKey, TValue>(3);
+            if (k0 != null)
             {
-                { k0, v0 },
-                { k1, v1 },
-                { k2, v2 },
-            }.FilterNulls();
+                dict[k0] = v0;
+            }
+
+            if (k1 != null)
+            {
+                dict[k1] = v1;
+            }
+
+            if (k2 != null)
+            {
+                dict[k2] = v2;
+            }
+
+#if NETSTANDARD2_1
+            dict.TrimExcess();
+#endif
+            return dict;
         }
 
         public static IReadOnlyDictionary<TKey, TValue> Of<TKey, TValue>(TKey k0, TValue v0, TKey k1, TValue v1, TKey k2, TValue v2, TKey k3, TValue v3)
         {
-            return new Dictionary<TKey, TValue>
+            var dict = new Dictionary<TKey, TValue>(4);
+            if (k0 != null)
             {
-                { k0, v0 },
-                { k1, v1 },
-                { k2, v2 },
-                { k3, v3 },
-            }.FilterNulls();
+                dict[k0] = v0;
+            }
+
+            if (k1 != null)
+            {
+                dict[k1] = v1;
+            }
+
+            if (k2 != null)
+            {
+                dict[k2] = v2;
+            }
+
+            if (k3 != null)
+            {
+                dict[k3] = v3;
+            }
+
+#if NETSTANDARD2_1
+            dict.TrimExcess();
+#endif
+            return dict;
         }
 
         public static IReadOnlyDictionary<TKey, TValue> Of<TKey, TValue>(TKey k0, TValue v0, TKey k1, TValue v1, TKey k2, TValue v2, TKey k3, TValue v3, TKey k4, TValue v4)
         {
-            return new Dictionary<TKey, TValue>
+            var dict = new Dictionary<TKey, TValue>(5);
+            if (k0 != null)
             {
-                { k0, v0 },
-                { k1, v1 },
-                { k2, v2 },
-                { k3, v3 },
-                { k4, v4 },
-            }.FilterNulls();
+                dict[k0] = v0;
+            }
+
+            if (k1 != null)
+            {
+                dict[k1] = v1;
+            }
+
+            if (k2 != null)
+            {
+                dict[k2] = v2;
+            }
+
+            if (k3 != null)
+            {
+                dict[k3] = v3;
+            }
+
+            if (k4 != null)
+            {
+                dict[k4] = v4;
+            }
+#if NETSTANDARD2_1
+            dict.TrimExcess();
+#endif
+            return dict;
         }
 
         public static IReadOnlyDictionary<TKey, TValue> Of<TKey, TValue>(TKey k0, TValue v0, TKey k1, TValue v1, TKey k2, TValue v2, TKey k3, TValue v3, TKey k4, TValue v4, TKey k5, TValue v5)
         {
-            return new Dictionary<TKey, TValue>
+            var dict = new Dictionary<TKey, TValue>(6);
+            if (k0 != null)
             {
-                { k0, v0 },
-                { k1, v1 },
-                { k2, v2 },
-                { k3, v3 },
-                { k4, v4 },
-                { k5, v5 },
-            }.FilterNulls();
+                dict[k0] = v0;
+            }
+
+            if (k1 != null)
+            {
+                dict[k1] = v1;
+            }
+
+            if (k2 != null)
+            {
+                dict[k2] = v2;
+            }
+
+            if (k3 != null)
+            {
+                dict[k3] = v3;
+            }
+
+            if (k4 != null)
+            {
+                dict[k4] = v4;
+            }
+
+            if (k5 != null)
+            {
+                dict[k5] = v5;
+            }
+
+#if NETSTANDARD2_1
+            dict.TrimExcess();
+#endif
+            return dict;
         }
 
         public static IReadOnlyDictionary<TKey, TValue> Of<TKey, TValue>(TKey k0, TValue v0, TKey k1, TValue v1, TKey k2, TValue v2, TKey k3, TValue v3, TKey k4, TValue v4, TKey k5, TValue v5, TKey k6, TValue v6)
         {
-            return new Dictionary<TKey, TValue>
+            var dict = new Dictionary<TKey, TValue>(7);
+            if (k0 != null)
             {
-                { k0, v0 },
-                { k1, v1 },
-                { k2, v2 },
-                { k3, v3 },
-                { k4, v4 },
-                { k5, v5 },
-                { k6, v6 },
-            }.FilterNulls();
+                dict[k0] = v0;
+            }
+
+            if (k1 != null)
+            {
+                dict[k1] = v1;
+            }
+
+            if (k2 != null)
+            {
+                dict[k2] = v2;
+            }
+
+            if (k3 != null)
+            {
+                dict[k3] = v3;
+            }
+
+            if (k4 != null)
+            {
+                dict[k4] = v4;
+            }
+
+            if (k5 != null)
+            {
+                dict[k5] = v5;
+            }
+
+            if (k6 != null)
+            {
+                dict[k6] = v6;
+            }
+
+#if NETSTANDARD2_1
+            dict.TrimExcess();
+#endif
+            return dict;
         }
     }
 }

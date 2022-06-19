@@ -29,7 +29,15 @@ namespace FaunaDB.Collections
             return true;
         }
 
-        public static Dictionary<TKey, TValue> FilterNulls<TKey, TValue>(this Dictionary<TKey, TValue> dict) =>
-            dict.Where(kv => kv.Value != null).ToDictionary(kv => kv.Key, kv => kv.Value);
+        public static Dictionary<TKey, TValue> FilterNulls<TKey, TValue>(this Dictionary<TKey, TValue> dict)
+        {
+#if !NETSTANDARD2_1
+            return dict.Where(kv => kv.Value != null).ToDictionary(kv => kv.Key, kv => kv.Value);
+#else
+            var newDict = new Dictionary<TKey, TValue>(dict.Where(kv => kv.Value != null));
+            newDict.TrimExcess();
+            return newDict;
+#endif
+        }
     }
 }
