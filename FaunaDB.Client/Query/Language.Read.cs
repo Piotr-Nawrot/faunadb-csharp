@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using FaunaDB.Types;
 
 namespace FaunaDB.Query
@@ -39,17 +38,16 @@ namespace FaunaDB.Query
             Expr events = null,
             Expr sources = null,
             Cursor cursor = null) =>
-            UnescapedObject.With(new Dictionary<string, Expr>(StringComparer.Ordinal)
-            {
-                { "paginate", set ?? NullV.Instance },
-                { "ts", ts },
-                { "size", size },
-                { "events", events },
-                { "sources", sources },
-                { "after", after },
-                { "before", before },
-                { "cursor", cursor?.Source },
-            });
+            UnescapedObject.With(
+                "paginate", set ?? NullV.Instance,
+                "ts", ts,
+                "size", size,
+                "events", events,
+                "sources", sources,
+                "after", after,
+                "before", before,
+                "cursor", cursor?.Source
+            );
 
         /// <summary>
         /// Creates a new Cursor to be used with a Paginate expression.

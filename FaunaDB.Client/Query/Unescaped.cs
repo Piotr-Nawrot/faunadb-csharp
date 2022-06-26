@@ -62,6 +62,9 @@ namespace FaunaDB.Query
 
         public static UnescapedObject With(string key1, Expr value1, string key2, Expr value2, string key3, Expr value3, string key4, Expr value4, string key5, Expr value5, string key6, Expr value6, string key7, Expr value7) =>
             new UnescapedObject(ImmutableDictionary.Of(key1, value1 ?? NullV.Instance, key2, value2, key3, value3, key4, value4, key5, value5, key6, value6, key7, value7));
+
+        public static UnescapedObject With(string key1, Expr value1, string key2, Expr value2, string key3, Expr value3, string key4, Expr value4, string key5, Expr value5, string key6, Expr value6, string key7, Expr value7, string key8, Expr value8) =>
+            new UnescapedObject(ImmutableDictionary.Of(key1, value1 ?? NullV.Instance, key2, value2, key3, value3, key4, value4, key5, value5, key6, value6, key7, value7, key8, value8));
     }
 
     internal class UnescapedArray : Expr
