@@ -14,8 +14,7 @@ namespace FaunaDB.Collections
 
             foreach (var kv in a)
             {
-                TValue valueB;
-                if (!b.TryGetValue(kv.Key, out valueB))
+                if (!b.TryGetValue(kv.Key, out var valueB))
                 {
                     return false;
                 }
@@ -32,11 +31,10 @@ namespace FaunaDB.Collections
         public static Dictionary<TKey, TValue> FilterNulls<TKey, TValue>(this Dictionary<TKey, TValue> dict)
         {
 #if !NETSTANDARD2_1
-            return dict.Where(kv => kv.Value != null).ToDictionary(kv => kv.Key, kv => kv.Value);
+            return dict.Where(kv => kv.Value != null)
+                .ToDictionary(kv => kv.Key, kv => kv.Value, dict.Comparer);
 #else
-            var newDict = new Dictionary<TKey, TValue>(dict.Where(kv => kv.Value != null));
-            newDict.TrimExcess();
-            return newDict;
+            return new Dictionary<TKey, TValue>(dict.Where(kv => kv.Value != null), dict.Comparer);
 #endif
         }
     }
