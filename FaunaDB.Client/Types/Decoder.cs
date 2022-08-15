@@ -174,31 +174,31 @@ namespace FaunaDB.Types
                     return ToDateTime(value);
 
                 case TypeCode.SByte:
-                    return Convert.ToSByte(ToNumber<sbyte>(value));
+                    return Convert.ToSByte(ToIntegralNumber<sbyte>(value));
                 case TypeCode.Int16:
-                    return Convert.ToInt16(ToNumber<short>(value));
+                    return Convert.ToInt16(ToIntegralNumber<short>(value));
                 case TypeCode.Int32:
-                    return Convert.ToInt32(ToNumber<int>(value));
+                    return Convert.ToInt32(ToIntegralNumber<int>(value));
                 case TypeCode.Int64:
-                    return Convert.ToInt64(ToNumber<long>(value));
+                    return Convert.ToInt64(ToIntegralNumber<long>(value));
 
                 case TypeCode.Char:
-                    return Convert.ToChar(ToNumber<char>(value));
+                    return Convert.ToChar(ToIntegralNumber<char>(value));
                 case TypeCode.Byte:
-                    return Convert.ToByte(ToNumber<byte>(value));
+                    return Convert.ToByte(ToIntegralNumber<byte>(value));
                 case TypeCode.UInt16:
-                    return Convert.ToUInt16(ToNumber<ushort>(value));
+                    return Convert.ToUInt16(ToIntegralNumber<ushort>(value));
                 case TypeCode.UInt32:
-                    return Convert.ToUInt32(ToNumber<uint>(value));
+                    return Convert.ToUInt32(ToIntegralNumber<uint>(value));
                 case TypeCode.UInt64:
-                    return Convert.ToUInt64(ToNumber<ulong>(value));
+                    return Convert.ToUInt64(ToIntegralNumber<ulong>(value));
 
                 case TypeCode.Single:
-                    return Convert.ToSingle(ToNumber<float>(value));
+                    return Convert.ToSingle(ToFloatingNumber<float>(value));
                 case TypeCode.Double:
-                    return Convert.ToDouble(ToNumber<double>(value));
+                    return Convert.ToDouble(ToFloatingNumber<double>(value));
                 case TypeCode.Decimal:
-                    return Convert.ToDecimal(ToNumber<decimal>(value));
+                    return Convert.ToDecimal(ToFloatingNumber<decimal>(value));
 
 #if !NETSTANDARD1_5
                 case TypeCode.DBNull:
@@ -379,27 +379,36 @@ namespace FaunaDB.Types
             return ret;
         }
 
-        private object ToNumber<R>(Value value)
+        private long ToIntegralNumber<TNumber>(Value value)
+            where TNumber : struct
         {
-            var ll = value as ScalarValue<long>;
-            if (ll != null)
+            if (value is ScalarValue<long> @long)
             {
-                return ll.Value;
+                return @long.Value;
             }
 
-            var dd = value as ScalarValue<double>;
-            if (dd != null)
+            if (value is ScalarValue<string> @string)
             {
-                return dd.Value;
+                return Convert.ToInt64(@string.Value);
             }
 
-            var ss = value as ScalarValue<string>;
-            if (ss != null)
+            throw invalidCast(value, typeof(TNumber));
+        }
+
+        private double ToFloatingNumber<TNumber>(Value value)
+            where TNumber : struct
+        {
+            if (value is ScalarValue<double> @double)
             {
-                return ss.Value;
+                return @double.Value;
             }
 
-            throw invalidCast(value, typeof(R));
+            if (value is ScalarValue<string> @string)
+            {
+                return Convert.ToDouble(@string.Value);
+            }
+
+            throw invalidCast(value, typeof(TNumber));
         }
 
         private string ToString(Value value) =>
